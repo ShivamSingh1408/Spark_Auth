@@ -53,7 +53,7 @@ class _LoginState extends State<Login> {
                 splashColor: Colors.black,
                 padding: EdgeInsets.fromLTRB(55, 15, 55, 15),
                 child: Text(
-                  "   Google   ",
+                  "   Google SignIn   ",
                   style: TextStyle(color: Colors.white, fontSize: 15),
                 ),
                 color: Colors.transparent,
