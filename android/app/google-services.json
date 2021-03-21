@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "295616439118",
+    "project_id": "sparks-foundation-6d108",
+    "storage_bucket": "sparks-foundation-6d108.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295616439118:android:472b4e28437469d0ff341f",
+        "android_client_info": {
+          "package_name": "com.mudrab.login_with_socials"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295616439118-uuokq4q95the9i8q2qkj6sf1s9o25t1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD2Br-vAV_LiJcxrSUDeQZ15lXC2BcP_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295616439118-uuokq4q95the9i8q2qkj6sf1s9o25t1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
