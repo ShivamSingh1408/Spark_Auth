@@ -12,9 +12,10 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CircleAvatar(
               backgroundImage: NetworkImage(this.profilepic),
@@ -23,36 +24,53 @@ class Profile extends StatelessWidget {
             SizedBox(
               height: 30.0,
             ),
-            Text("NAME:", style: TextStyle(fontSize: 15.0)),
+            Text("NAME:", style: TextStyle(fontSize: 14.0)),
             SizedBox(
               height: 5.0,
             ),
-            Text(this.name, style: TextStyle(fontSize: 25.0)),
+            Text(this.name,
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 20.0),
-            Text("EMAIL ID:", style: TextStyle(fontSize: 15.0)),
+            Text("EMAIL ID:", style: TextStyle(fontSize: 14.0)),
             SizedBox(
               height: 5.0,
             ),
-            Text(this.email, style: TextStyle(fontSize: 20.0)),
+            Text(this.email,
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
             SizedBox(
-              height: 30.0,
+              height: MediaQuery.of(context).size.height * 0.25,
             ),
-            RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                color: Colors.blueGrey,
-                padding: EdgeInsets.all(15),
-                child: Text(
-                  "Log Out",
-                  style: TextStyle(color: Colors.white, fontSize: 17),
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color.fromRGBO(35, 40, 107, 1),
                 ),
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Login()));
-                  if (AuthBlocGoogle().currentUser != null) {
-                    AuthBlocGoogle().logout();
-                  }
-                })
+                child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    elevation: 7.5,
+                    splashColor: Colors.black,
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                    child: Text(
+                      "Sign Out",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    color: Colors.transparent,
+                    textTheme: ButtonTextTheme.accent,
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => Login()));
+                      if (AuthBlocGoogle().currentUser != null) {
+                        AuthBlocGoogle().logout();
+                      }
+                    }),
+              ),
+            )
           ],
         ),
       ),

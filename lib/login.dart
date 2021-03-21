@@ -15,95 +15,108 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.fromLTRB(15, 15, 15, 15),
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset("lib/images/tsflogo.png",
-                height: size.height * 0.45, width: double.infinity),
-            Text(
-              "Login With",
-              style: GoogleFonts.josefinSans(
-                textStyle: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 30.0,
-                    letterSpacing: 1.25,
-                    fontWeight: FontWeight.w900),
-              ),
+      backgroundColor: Colors.white,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            "Connect Here",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 25),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.45,
+            child: Image.asset(
+              "images/clip-sign-up.png",
+              width: size.width,
+              fit: BoxFit.fitHeight,
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                gradient: LinearGradient(colors: [
-                  Color.fromRGBO(219, 68, 55, 1),
-                  Color.fromRGBO(244, 160, 0, 1),
-                  Color.fromRGBO(15, 155, 88, 1),
-                  Color.fromRGBO(66, 133, 244, 1),
-                ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-              ),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                elevation: 7.5,
-                splashColor: Colors.black,
-                padding: EdgeInsets.fromLTRB(55, 15, 55, 15),
-                child: Text(
-                  "   Google SignIn   ",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color.fromRGBO(35, 40, 107, 1),
                 ),
-                color: Colors.transparent,
-                textTheme: ButtonTextTheme.accent,
-                onPressed: () async {
-                  AuthBlocGoogle gu = AuthBlocGoogle();
-                  gu.googleSignin.disconnect();
-                  User googleUser = await gu.loginGoogle();
-                  if (googleUser != null) {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => Profile(googleUser.photoURL,
-                            googleUser.displayName, googleUser.email)));
-                  } else {
-                    print("Error occured");
-                  }
-                },
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  elevation: 7.5,
+                  splashColor: Colors.black,
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  child: Text(
+                    "Google SignIn",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  color: Colors.transparent,
+                  textTheme: ButtonTextTheme.accent,
+                  onPressed: () async {
+                    AuthBlocGoogle gu = AuthBlocGoogle();
+                    gu.googleSignin.disconnect();
+                    User googleUser = await gu.loginGoogle();
+                    if (googleUser != null) {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => Profile(googleUser.photoURL,
+                              googleUser.displayName, googleUser.email)));
+                    } else {
+                      print("Error occured");
+                    }
+                  },
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-            ),
-            RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                elevation: 7.5,
-                splashColor: Colors.black,
-                padding: EdgeInsets.fromLTRB(55, 15, 55, 15),
-                child: Text("Facebook ",
-                    style: GoogleFonts.roboto(
-                        textStyle: TextStyle(color: Colors.white),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15)),
-                color: Color.fromRGBO(66, 103, 178, 1),
-                onPressed: () async {
-                  AuthBlocFacebook fb = AuthBlocFacebook();
-                  fb.logout();
-                  User fbUser = await fb.loginFacebook();
-                  if (fbUser != null) {
-                    print(fbUser.email);
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => Profile(fbUser.photoURL,
-                            fbUser.displayName, fbUser.email)));
-                  } else {
-                    print("Error occured");
-                  }
-                }),
-          ],
-        ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color.fromRGBO(35, 40, 107, 1),
+                ),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  elevation: 7.5,
+                  splashColor: Colors.black,
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  child: Text(
+                    "Facebook SignIn",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  color: Colors.transparent,
+                  textTheme: ButtonTextTheme.accent,
+                  onPressed: () async {
+                    AuthBlocFacebook fb = AuthBlocFacebook();
+                    fb.logout();
+                    User fbUser = await fb.loginFacebook();
+                    if (fbUser != null) {
+                      print(fbUser.email);
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => Profile(fbUser.photoURL,
+                              fbUser.displayName, fbUser.email)));
+                    } else {
+                      print("Error occured");
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
-      //),
     );
   }
 }
